@@ -1,0 +1,17 @@
+{
+  "name": "care-academy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "maksym.klishevych@techstarsassociates.com",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^16.1.0",
+    "pg": "^6.1.4",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.30.2"
+  }
+}
