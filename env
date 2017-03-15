@@ -1,0 +1,6 @@
+export NODE_ENV=development
+export DB_NAME=care_academy_webhooks
+export DB_USERNAME=postgres
+export DB_PASSWORD=
+export DB_HOST=localhost
+export DB_PORT=5432
