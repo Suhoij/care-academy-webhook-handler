@@ -4,10 +4,10 @@ var MailChimpController = require('../controllers/MailChimp');
 var TypeFormController = require('../controllers/TypeForm');
 var ThoughtIndustriesController = require('../controllers/ThoughtIndustries');
 
-module.exports = function (server, db) {
-    var mailChimpController = new MailChimpController(db);
-    var typeFormController = new TypeFormController(db);
-    var thoughtIndustriesController = new ThoughtIndustriesController(db);
+module.exports = function (server, db, winston) {
+    var mailChimpController = new MailChimpController(db, winston);
+    var typeFormController = new TypeFormController(db, winston);
+    var thoughtIndustriesController = new ThoughtIndustriesController(db, winston);
 
     server.bind(mailChimpController);
     server.bind(typeFormController);

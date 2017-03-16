@@ -5,6 +5,7 @@ const Hapi = require('hapi');
 // Create a server with a host and port
 const server = new Hapi.Server();
 const db = require('./config/sequelize');
+const winston = require('./config/winston');
 
 server.connection({
     host: 'localhost',
@@ -12,7 +13,7 @@ server.connection({
 });
 
 // Require routing files
-require('./routes/WebHooks')(server, db);
+require('./routes/WebHooks')(server, db, winston);
 
 // Start the server
 server.start((err) => {

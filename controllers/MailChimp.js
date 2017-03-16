@@ -1,11 +1,14 @@
 'use strict';
 
-function MailChimpController(db) {
+function MailChimpController(db, winston) {
     this.db = db;
+    this.winston = winston;
 }
 
 // [POST] /api/MailChimp
 MailChimpController.prototype.post = function(request, reply) {
+    this.winston.info('Received a web hook from MailChimp.');
+
     var model = this.db.WebHookJson.build();
     model.origin = this.db.WebHookJson.Origins.MAIL_CHIMP;
     model.data = request.payload;
@@ -13,9 +16,8 @@ MailChimpController.prototype.post = function(request, reply) {
     model
         .save()
         .catch(function(err) {
-            // log error
-            console.log(err);
-        });
+            this.winston.error(err);
+        }.bind(this));
 
     reply();
 };
