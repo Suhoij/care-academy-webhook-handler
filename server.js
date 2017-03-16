@@ -13,12 +13,13 @@ server.connection({
 });
 
 // Require routing files
-require('./routes/WebHooks')(server, db, winston);
+require('./routes/WebHook')(server, db, winston);
+require('./routes/NetPromoterScore')(server, db, winston);
 
 // Start the server
 server.start((err) => {
     if (err) {
         throw err;
     }
-    console.log('Server running at:', server.info.uri);
+    winston.info('Server running at:', server.info.uri);
 });
