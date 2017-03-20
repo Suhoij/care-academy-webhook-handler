@@ -1,9 +1,9 @@
 module.exports = {
 	"development": {
 		"username"  : "postgres",
-		"password"  : 'b#^sVR|4G7)L',
+		"password"  : '',
 		"database"  : "care_academy_webhooks",
-		"host"      : "webhooks-data.crncqh6y9gfh.us-east-1.rds.amazonaws.com",
+		"host"      : "localhost",
 		"dialect"   : "postgres"
 	},
 	"production": {
@@ -11,6 +11,6 @@ module.exports = {
 		"database"  : process.env.RDS_DB_NAME ,
 		"username"  : process.env.RDS_USERNAME,
 		"password"  : process.env.RDS_PASSWORD,
-		"dialect": 'postgres',
+		"dialect": 'postgres'
 	}
 };
