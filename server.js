@@ -9,7 +9,7 @@ const winston = require('./config/winston');
 
 server.connection({
     host: 'localhost',
-    port: 8000
+    port: 8081
 });
 
 // Require routing files
