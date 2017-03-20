@@ -11,7 +11,11 @@ var db        = {};
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  var sequelize = new Sequelize(config.database, config.username, config.password, config);
+  var sequelize = new Sequelize(process.env.RDS_DB_NAME, process.env.RDS_USERNAME, process.env.RDS_PASSWORD, {
+    host: process.env.RDS_HOSTNAME,
+    port: process.env.RDS_PORT,
+    dialect: 'postgres'
+  });
 }
 
 fs
