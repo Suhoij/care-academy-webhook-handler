@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const TypeFormResponseDTO = require('../dto/TypeFormResponse');
 const TYPE_FORM_SCORE_QUESTION_ID = 44122510;
 const TYPE_FORM_COMMENT_QUESTION_ID = 44122589;
 
@@ -102,36 +103,27 @@ NetPromoterScoreController.prototype.getByAgency = function(request, reply) {
 
 // [POST] /api/NetPromoterScore
 NetPromoterScoreController.prototype.post = function(request, reply) {
-    var score = Array.from(_.get(request.payload, 'form_response.answers', []))
-        .reduce(function (result, answer) {
-            if (answer['field']['id'] == TYPE_FORM_SCORE_QUESTION_ID) {
-                result = answer['number'];
-            }
-            return result;
-        }, 0);
-    var comment = Array.from(_.get(request.payload, 'form_response.answers', []))
-        .reduce(function (result, answer) {
-            if (_.get(answer, 'field.id') == TYPE_FORM_COMMENT_QUESTION_ID) {
-                result = answer['text'];
-            }
-            return result;
-        }, '');
+    var dto = new TypeFormResponseDTO(request.payload);
+    var scoreAnswer = dto.getAnswerById(TYPE_FORM_SCORE_QUESTION_ID);
+    var commentAnswer = dto.getAnswerById(TYPE_FORM_COMMENT_QUESTION_ID);
 
     var record = this.db.PromoterRecord.build();
-    record.eventId = request.payload['event_id'];
-    record.className = _.get(request.payload, 'form_response.hidden.course');
-    record.agency = _.get(request.payload, 'form_response.hidden.agency');
-    record.submittedAt = _.get(request.payload, 'form_response.submitted_at');
-    record.score = score;
-    record.comment = comment;
-    record.isDetractor = score <= 6;
-    record.isPromoter = score >= 9;
+    record.eventId = dto.getEventId();
+    record.className = dto.getHidden('course', '');
+    record.agency = dto.getHidden('agency', '');
+    record.submittedAt = dto.getSubmittedAtDate();
+    record.score = scoreAnswer ? scoreAnswer['number'] : 0;
+    record.comment = commentAnswer ? commentAnswer['text'] : '';
+    record.isDetractor = record.score <= 6;
+    record.isPromoter = record.score >= 9;
 
     record.save().catch(function (err) {
         this.winston.error(err);
     }.bind(this));
 
-    reply();
+    reply({
+        success: true
+    });
 };
 
 // GET: /api/NpsComments

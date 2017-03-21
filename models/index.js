@@ -9,6 +9,7 @@ var dbConfig  = require('../config/database.js')[env];
 var db        = {};
 
 
+
 var sequelize = new Sequelize(
 		dbConfig.database,
 		dbConfig.username,
