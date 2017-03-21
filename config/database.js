@@ -1,9 +1,9 @@
 module.exports = {
 	"development": {
-		"username"  : "postgres",
-		"password"  : 'b#^sVR|4G7)L',
-		"database"  : "care_academy_webhooks",
-		"host"      : "webhooks-data.crncqh6y9gfh.us-east-1.rds.amazonaws.com",
+		"username"  : "",
+		"password"  : '',
+		"database"  : "",
+		"host"      : "",
 		"dialect"   : "postgres"
 	},
 	"production": {
