@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start" : "pm2 start process.ym",
+    "start": "/opt/elasticbeanstalk/node-install/node-v7.6.0-linux-x64/bin/node ./node_modules/.bin/pm2 start process.yml",
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "maksym.klishevych@techstarsassociates.com",
@@ -23,5 +24,8 @@
     "winston": "^2.3.1",
     "winston-cloudwatch-transport": "^1.0.8",
     "winston-logrotate": "^1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
