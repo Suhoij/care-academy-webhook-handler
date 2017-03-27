@@ -4,20 +4,24 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start" : "pm2 start process.ym",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "maksym.klishevych@techstarsassociates.com",
   "license": "ISC",
   "dependencies": {
     "crypto": "0.0.3",
+    "dotenv": "https://registry.npmjs.org/dotenv/-/dotenv-4.0.0.tgz",
     "hapi": "^16.1.0",
     "lodash": "^4.17.4",
     "mailchimp-api-v3": "^1.7.0",
     "pg": "^6.1.4",
     "pg-hstore": "^2.3.2",
+    "pm2": "^2.4.2",
     "sequelize": "^3.30.2",
     "sequelize-cli": "^2.6.0",
     "winston": "^2.3.1",
+    "winston-cloudwatch-transport": "^1.0.8",
     "winston-logrotate": "^1.0.1"
   }
 }

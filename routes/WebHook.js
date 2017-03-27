@@ -9,25 +9,27 @@ module.exports = function (server, db, winston) {
     var typeFormController = new TypeFormController(db, winston);
     var thoughtIndustriesController = new ThoughtIndustriesController(db, winston);
 
-    server.bind(mailChimpController);
-    server.bind(typeFormController);
-    server.bind(thoughtIndustriesController);
 
+    server.bind(mailChimpController);
     server.route({
         method: 'POST',
         path: '/api/MailChimp',
         handler: mailChimpController.post
     });
 
+
+	server.bind(typeFormController);
     server.route({
         method: 'POST',
         path: '/api/TypeForm',
         handler: typeFormController.post
     });
 
+
+	server.bind(thoughtIndustriesController);
     server.route({
         method: 'POST',
         path: '/api/ThoughtIndustries',
-        handler: typeFormController.post
+        handler: thoughtIndustriesController.post
     });
 };

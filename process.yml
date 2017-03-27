@@ -1,0 +1,5 @@
+apps:
+  - script   : server.js
+    name     : 'webhooks'
+    instances: 1
+    exec_mode: cluster

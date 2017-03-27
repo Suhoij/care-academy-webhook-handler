@@ -1,7 +1,0 @@
-export NODE_ENV=development
-export RDS_DB_NAME=care_academy_webhooks
-export RDS_USERNAME=postgres
-export RDS_PASSWORD=
-export RDS_HOSTNAME=localhost
-export RDS_PORT=5432
-export MAIL_CHIMP_API_KEY=

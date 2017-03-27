@@ -4,19 +4,17 @@ var fs        = require('fs');
 var path      = require('path');
 var Sequelize = require('sequelize');
 var basename  = path.basename(module.filename);
-var env       = process.env.NODE_ENV || 'development';
-var dbConfig  = require('../config/database.js')[env];
 var db        = {};
 
 
 
 var sequelize = new Sequelize(
-		dbConfig.database,
-		dbConfig.username,
-		dbConfig.password,
+		process.env.RDS_DB_NAME,
+		process.env.RDS_USERNAME,
+		process.env.RDS_PASSWORD,
 		{
-			"dialect"   : dbConfig.dialect,
-			"host"      : dbConfig.host
+			"dialect"   : 'postgres',
+			"host"      : process.env.RDS_HOSTNAME
 		}
     );
 
